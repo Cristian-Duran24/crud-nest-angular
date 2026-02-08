@@ -1,0 +1,20 @@
+# --- GLOBAL (Afecta a todo el proyecto) ---
+# Sistema Operativo
+.DS_Store
+Thumbs.db
+
+# Logs generales
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Entorno (Protección CRÍTICA para Docker y Root)
+.env
+.env.*
+
+# IDEs (Configuración de Workspace)
+.vscode/
+.idea/
+
+# Node Modules (Por si instalas algo en la raíz por error)
+node_modules/
