@@ -1,0 +1,36 @@
+services:
+  # Servicio de Base de Datos MySQL
+  mysql_db:
+    image: mysql:8.0
+    container_name: crud_nest_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+    ports:
+      - "${MYSQL_DOCKER_PORT}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - crud_network
+
+  # Visualizador de Base de Datos (phpMyAdmin)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: crud_nest_pma
+    restart: always
+    environment:
+      PMA_HOST: mysql_db
+      UPLOAD_LIMIT: 64M
+    ports:
+      - "${PHPMYADMIN_PORT}:80"
+    depends_on:
+      - mysql_db
+    networks:
+      - crud_network
+
+volumes:
+  mysql_data:
+
+networks:
+  crud_network:
